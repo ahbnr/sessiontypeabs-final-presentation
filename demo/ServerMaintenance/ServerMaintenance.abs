@@ -1,0 +1,96 @@
+module ServerMaintenance;
+
+data Status = Ok | NeedsUpdate;
+
+interface MainServerI {
+  Status checkStatus();
+  Unit update();
+}
+
+interface BackupServerI {
+  Unit powerOn();
+}
+
+interface ProxyI {
+  Unit divertToBackup();
+}
+
+interface ControllerI {
+  Unit start();
+}
+
+class MainServer implements MainServerI {
+  Status checkStatus() {
+    Status state = if (random(2) == 0)
+      then
+        Ok
+      else
+        NeedsUpdate;
+
+    return state;
+  }
+
+  Unit update() {
+    // Install updates and restart...
+  }
+}
+
+class BackupServer implements BackupServerI {
+  Unit powerOn() {
+    // Powering up all services...
+    println("Backup is live!");
+  }
+}
+
+class Controller (
+  MainServerI m,
+  BackupServerI b,
+  ProxyI p
+) implements ControllerI {
+  Fut<Status> fCheck;
+  Fut<Unit> fPowerOn;
+  Fut<Unit> fDivert;
+  Fut<Unit> fUpdate;
+
+  Unit start() {
+    Int i = 0;
+    while (i < 1) {
+      fCheck = m!checkStatus();
+
+      Status status = fCheck.get;
+
+      case (status) {
+        Ok => println("Everything ok");
+        NeedsUpdate => {
+          println("Main server needs update!");
+
+          fPowerOn = b!powerOn();
+          await fPowerOn?;
+
+          fDivert = p!divertToBackup();
+          await fDivert?;
+
+          fUpdate = m!update();
+        }
+      }
+
+      i = i + 1;
+    }
+  }
+}
+
+class Proxy implements ProxyI {
+  Unit divertToBackup() {
+    // Configure proxy software to redirect incoming traffic to address of backup...
+    println("Diverted traffic to backup.");
+  }
+}
+
+{
+  MainServerI m = new MainServer();
+  BackupServerI b = new BackupServer();
+  ProxyI p = new Proxy();
+  ControllerI c = new Controller(m, b, p);
+
+  c!start();
+}

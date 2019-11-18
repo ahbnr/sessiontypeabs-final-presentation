@@ -1,0 +1,292 @@
+%%%%%%%%%%%%%%%%%%%
+% Mathematik-Pakete
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathtools} % erweiterte Fassung von amsmath
+\usepackage{amssymb}   % erweiterter Zeichensatz
+\usepackage{amsthm}    % theorem environments
+
+%%%%%%%%%%%%%%%%%%
+% Packages for drawing customized arrows and boxes around listings
+%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{calc,decorations.pathmorphing}
+
+%%%%%%%%%%%%%%%%%%
+% Commands and Environments
+%%%%%%%%%%%%%%%%%%
+
+\newcommand*\symlist[1]{\overline{#1}}%
+\newcommand{\Model}{\mathit{Model}}%
+
+% Stretchable leadsto arrow
+%%%%%%%%%%%%%%%%%%
+
+% Combined code from
+% https://tex.stackexchange.com/a/66725
+% and
+% https://tex.stackexchange.com/a/60219
+\newcommand{\tikzoverset}[2]{%
+  \tikz[baseline=(X.base),inner sep=0pt,outer sep=0pt]{%
+    \node[inner sep=0pt,outer sep=0pt] (X) {$#2$}; 
+    \node[yshift=1pt] at (X.north) {$#1$};
+}}
+
+\newcommand{\rsquigarrowoverset}[1]{%
+  \tikz[baseline=(X.base),inner sep=0pt,outer sep=0pt]{%
+    \node[inner sep=0pt,outer sep=0pt] (X) {$#1$}; 
+    \node[yshift=3pt] (left) at (X.north east) {};
+    \node[yshift=3pt] (right) at (X.north west) {};
+    \path[%
+        ,draw,<-
+        ,decorate,decoration={%
+            ,zigzag
+            ,amplitude=0.7pt
+            ,segment length=1.2mm,pre length=3.5pt
+            }
+        ] 
+    (left) -- (right)
+}}
+
+\newcommand\xrsquigarrow[1]{%
+    \mathrel{%
+        \begin{tikzpicture}[%
+            baseline={(current bounding box.south)}
+            ]
+        \node[%
+            ,inner sep=.44ex
+            ,align=center
+            ] (tmp) {$\scriptstyle #1$};
+        \path[%
+            ,draw,<-
+            ,decorate,decoration={%
+                ,zigzag
+                ,amplitude=0.7pt
+                ,segment length=1.2mm,pre length=3.5pt
+                }
+            ] 
+        (tmp.south east) -- (tmp.south west);
+        \end{tikzpicture}
+        }
+    }
+\newcommand\xlsquigarrow[1]{%
+    \mathrel{%
+        \begin{tikzpicture}[%
+            ,baseline={(current bounding box.south)}
+            ]
+        \node[%
+            ,inner sep=.44ex
+            ,align=center
+            ] (tmp) {$\scriptstyle #1$};
+        \path[%
+            ,draw,<-
+            ,decorate,decoration={%
+                ,zigzag
+                ,amplitude=0.7pt
+                ,segment length=1.2mm,pre length=3.5pt
+                }
+            ] 
+        (tmp.south west) -- (tmp.south east);
+        \end{tikzpicture}
+        }
+    }
+
+% Invisible logical operators
+%%%%%%%%%%%%%%%%%%
+\newcommand{\pland}{\mathbin{\phantom{\land}}}%
+\newcommand{\plor}{\mathbin{\phantom{\lor}}}%
+
+% Commonly used variables
+%%%%%%%%%%%%%%%%%%
+\newcommand{\prestate}{\sigma_\mathit{pre}}%
+\newcommand{\poststate}{\sigma_\mathit{post}}%
+
+%%%%%%%%%%%%%%%%%%
+% Session Types
+%%%%%%%%%%%%%%%%%
+
+% Global Types
+%%%%%%%%%%%%%%
+
+\newcommand{\GlobalTypes}{\mathcal{G}}%
+\newcommand{\SimpleGlobalTypes}{\mathcal{G}_\mathit{atomic}}%
+
+\NewDocumentCommand{\GSTInit}{m m m o}{%
+  0 \xrightarrow{#1} #2\colon #3%
+  \IfValueT{#4}{\left\llbracket#4\right\rrbracket}%
+}%
+\NewDocumentCommand{\GSTInitOptP}{m m m m}{%
+  0 \xrightarrow{#1} #2\colon #3%
+  \left[\left\llbracket#4\right\rrbracket\right]%
+}%
+\NewDocumentCommand{\GSTInteract}{m m m m o}{%
+  #1 \xrightarrow{#2} #3\colon #4%
+  \IfValueT{#5}{\left\llbracket#5\right\rrbracket}
+}
+\NewDocumentCommand{\GSTInteractOptP}{m m m m m}{%
+  #1 \xrightarrow{#2} #3\colon #4
+  \left[\left\llbracket#5\right\rrbracket\right]
+}
+\NewDocumentCommand{\GSTFetch}{ m m o }{%
+  #1 \uparrow #2 \IfNoValueTF{#3}%
+    {}%
+    {\left(#3\right)}%
+}%
+\NewDocumentCommand{\GSTFetchOptC}{ m m m }{%
+  #1 \uparrow #2 \left[\left(#3\right)\right]%
+}%
+\newcommand{\GSTRelease}[2]{\mathit{Rel}(#1, #2)}%
+\NewDocumentCommand{\GSTResolve}{ m m o }{%
+  #1 \downarrow #2 \IfNoValueTF{#3}%
+    {}%
+    {\left(#3\right)}%
+}%
+\NewDocumentCommand{\GSTResolveOptC}{ m m m }{%
+  #1 \downarrow #2 \left[\left(#3\right)\right]%
+}%
+\newcommand{\GSTRepeat}[1]{\left(#1\right)^*}%
+\newcommand{\GSTSkip}{\mathit{Skip}}%
+\newcommand{\GSTBranch}[2]{%
+  #1\left\{%
+  \begin{aligned}%
+    #2%
+  \end{aligned}%
+  \right\}%
+}%
+
+\newcommand{\GSTend}{\bm{\mathrm{end}}}%
+
+% Analyzed Global Types
+%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\AnalyzedGlobalTypes}{O{\combinedAnalysis}}{%
+  \mathcal{G}^{#1}
+}
+
+\newcommand{\AGSTSimple}[3]{#1\left\langle#2, #3\right\rangle}%
+\newcommand{\AGSTRepeat}[3]{\left(#1\right)^*\left\langle#2, #3\right\rangle}%
+\newcommand{\AGSTBranch}[3]{%
+  #1\left\langle#2, #3\right\rangle%
+}%
+
+\NewDocumentCommand{\AGSTHat}{ m O{\combinedAnalysis} }{%
+  #1^{#2}
+}%
+
+% Object Local Types
+%%%%%%%%%%%%%%
+
+\newcommand{\LocalTypes}{\mathcal{L}}%
+
+\newcommand{\LSTSend}[3]{#1 !_{#2} #3}%
+\NewDocumentCommand{\LSTReceive}{m m m o}{%
+  #1 ?_{#2} #3%
+  \IfValueT{#4}{\left\llbracket #4\right\rrbracket}%
+}%
+\NewDocumentCommand{\LSTReceiveOptP}{m m m m}{%
+  #1 ?_{#2} #3%
+  \left[\left\llbracket #4\right\rrbracket\right]%
+}%
+\NewDocumentCommand{\LSTGet}{ m o }{%
+  \operatorname{Get} #1\IfNoValueTF{#2}%
+    {}
+    {\left(#2\right)}
+}%
+\NewDocumentCommand{\LSTGetOptC}{ m m }{%
+  \operatorname{Get} #1 \left[\left(#2\right)\right]
+}%
+\newcommand{\LSTAwait}[2]{\mathit{Await}(#1, #2)}%
+\NewDocumentCommand{\LSTPut}{ m !o }{%
+  \operatorname{Put} #1\IfNoValueTF{#2}%
+    {}
+    {\left(#2\right)}
+}
+\NewDocumentCommand{\LSTPutOptC}{ m m }{%
+  \operatorname{Put} #1 \left[\left(#2\right)\right]
+}
+\newcommand{\LSTReact}[1]{\operatorname{React} #1}%
+\newcommand{\LSTRepeat}[1]{\left(#1\right)^*}%
+\newcommand{\LSTSkip}{\mathit{Skip}}%
+\newcommand{\LSTChoose}[1]{%
+  \oplus\left\{%
+  \begin{aligned}%
+    #1%
+  \end{aligned}%
+  \right\}%
+}%
+\newcommand{\LSTOffer}[2]{%
+  \&_{#1}\left\{%
+  \begin{aligned}%
+    #2%
+  \end{aligned}%
+  \right\}%
+}%
+
+% Method Local Types
+%%%%%%%%%%%%%%
+
+\newcommand{\MethodLocalTypes}{\mathcal{M}}%
+
+\newcommand{\MLSTSend}[3]{#1 !_{#2} #3}%
+\NewDocumentCommand{\MLSTGet}{ m o }{%
+  \operatorname{Get} #1\IfNoValueTF{#2}%
+    {}
+    {\left(#2\right)}
+}%
+\NewDocumentCommand{\MLSTGetOptC}{ m m }{%
+  \operatorname{Get} #1 \left[\left(#2\right)\right]
+}%
+\newcommand{\MLSTAwait}[2]{\mathit{Await}(#1, #2)}%
+\newcommand{\MLSTPut}[1]{\operatorname{Put} #1}%
+\NewDocumentCommand{\MLSTPutOptC}{ m m }{%
+  \operatorname{Put} #1 \left[\left(#2\right)\right]
+}
+\newcommand{\MLSTRepeat}[1]{\left(#1\right)^*}%
+\newcommand{\MLSTSkip}{\mathit{Skip}}%
+\newcommand{\MLSTChoose}[1]{%
+  \oplus\left\{
+  \begin{aligned}%
+    #1%
+  \end{aligned}%
+  \right\}
+}%
+\newcommand{\MLSTOffer}[2]{%
+  \&_{#1}\left\{
+  \begin{aligned}%
+    #2%
+  \end{aligned}%
+  \right\}
+}%
+\newcommand{\MLSTLabelledBranch}[2]{#1: #2}%
+
+% Analyzed Local Types
+%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\execute}{ o }{%
+  \mathit{execute}_{%
+    \IfNoValueTF{#1}%
+      {\mathbb{D}}%
+      {#1}%
+  }%
+}
+
+\newcommand{\AnalyzedLocalTypes}{\mathcal{L}^{\combinedAnalysis}}%
+
+\newcommand{\ALST}[3]{#1\left\langle#2, #3\right\rangle}%
+\newcommand{\ALSTHat}[1]{{#1}^{\combinedAnalysis}}%
+
+% Projection
+%%%%%%%%%%%%%%%
+\NewDocumentCommand{\project}{ m o }{%
+  \mathit{project}^{#1}%
+    \IfNoValueTF{#2}%
+      {}%
+      {_{#2}}%
+}%
+
+% Dynamic Enforcement
+%%%%%%%%%%%%%%%%%%%%
+\newcommand{\genAutomaton}{\mathit{genAutomaton}}%
+\newcommand{\InvocREv}{\mathit{InvocREv}}%
+\newcommand{\ReactEv}{\mathit{ReactEv}}%
+\newcommand{\toInt}{\mathit{toInt}}%

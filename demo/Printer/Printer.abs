@@ -1,0 +1,54 @@
+module P;
+
+interface AppI {
+  Unit start();
+}
+
+interface PrinterI {
+  Unit init();
+  Unit write();
+  Unit print();
+}
+
+class App(PrinterI printer) implements AppI {
+  Fut<Unit> fInit;
+  Fut<Unit> fWrite;
+  Fut<Unit> fPrint;
+
+  Unit start() {
+    println("Starting");
+
+    Int i = 0;
+    while (i < 3) {
+      fWrite = printer!write(); // Intentional error, need to disable static verification
+      duration(1, 1);
+      fInit = printer!init();
+      fPrint = printer!print();
+
+      await fPrint?;
+
+      i = i + 1;
+    }
+  }
+}
+
+class Printer implements PrinterI {
+  Unit init() {
+    println("Printer init");
+  }
+
+  Unit write() {
+    println("Printer write");
+  }
+
+  Unit print() {
+    println("Printer print");
+  }
+}
+
+{
+  PrinterI printer = new Printer();
+  AppI app = new App(printer);
+
+  app!start();
+}

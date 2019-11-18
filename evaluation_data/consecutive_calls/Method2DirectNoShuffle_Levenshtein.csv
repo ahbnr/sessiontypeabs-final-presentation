@@ -1,0 +1,11 @@
+repetitions,plain sequential,plain alternating,enforcement sequential,enforcement alternating,sequence length
+1,0.0,0.0,0,0,2
+2,0.0,0.0,0,0,4
+3,0.4,0.4,0,0,6
+4,0.6,0.6,0,0,8
+5,0.6,0.6,0,0,10
+10,5.2,3.6,0,0,20
+30,28.6,14.75,0,0,60
+50,60.1,28.3,0,0,100
+70,94.45,41.7,0,0,140
+80,103.5,45.65,0,0,160
