@@ -7,8 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 Printer.abs
-badd +0 Printer.st
+badd +1 Printer.abs
+badd +1 Printer.st
 argglobal
 %argdel
 $argadd Printer.abs
@@ -25,8 +25,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 1resize ' . ((&columns * 53 + 49) / 98)
+exe 'vert 2resize ' . ((&columns * 44 + 49) / 98)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -37,12 +37,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 22) / 45)
+let s:l = 26 - ((13 * winheight(0) + 13) / 26)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+26
+normal! 09|
 wincmd w
 argglobal
 if bufexists("Printer.st") | buffer Printer.st | else | edit Printer.st | endif
@@ -55,15 +55,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 22) / 45)
+let s:l = 1 - ((0 * winheight(0) + 13) / 26)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 1resize ' . ((&columns * 53 + 49) / 98)
+exe 'vert 2resize ' . ((&columns * 44 + 49) / 98)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

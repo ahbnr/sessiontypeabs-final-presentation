@@ -20,7 +20,9 @@ class App(PrinterI printer) implements AppI {
 
     Int i = 0;
     while (i < 3) {
-      fWrite = printer!write(); // Intentional error, need to disable static verification
+      // Intentional error, need to disable
+      // static verification
+      fWrite = printer!write();
       duration(1, 1);
       fInit = printer!init();
       fPrint = printer!print();

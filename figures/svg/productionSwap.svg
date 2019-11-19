@@ -131,6 +131,21 @@
          transform="matrix(-0.8,0,0,-0.8,-10,0)"
          inkscape:connector-curvature="0" />
     </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4908-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path4906-4"
+         inkscape:connector-curvature="0" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -139,9 +154,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.1020712"
-     inkscape:cx="255.12259"
-     inkscape:cy="171.27557"
+     inkscape:zoom="1.4863888"
+     inkscape:cx="440.43678"
+     inkscape:cy="177.96974"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -278,9 +293,10 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4908)"
-       d="M 78.607297,95.118807 79.22022,22.334273"
+       d="M 77.632861,95.118807 V 22.334273"
        id="path4552"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4868)"
        d="M 69.719922,95.043196 43.21103,57.808159"
@@ -320,24 +336,6 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="80.599297"
-       y="43.556587"
-       id="text4962"><tspan
-         sodipodi:role="line"
-         id="tspan4960"
-         x="80.599297"
-         y="43.556587"
-         style="stroke-width:0.26458332"><tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#d32f2f;fill-opacity:1"
-   id="tspan6478">4.</tspan> Divert traffic</tspan><tspan
-         sodipodi:role="line"
-         x="80.599297"
-         y="47.525337"
-         style="stroke-width:0.26458332"
-         id="tspan4964">to backup</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="53.214787"
        y="69.285049"
        id="text4968"><tspan
@@ -347,7 +345,7 @@
          y="69.285049"
          style="stroke-width:0.26458332"><tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#d32f2f;fill-opacity:1"
-   id="tspan6482">5.</tspan> Update &amp;</tspan><tspan
+   id="tspan6482">6.</tspan> Update &amp;</tspan><tspan
          sodipodi:role="line"
          x="53.214787"
          y="73.253799"
@@ -379,7 +377,7 @@
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#008000"
    id="tspan1825">OK </tspan>/<tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#800000"
-   id="tspan1829"></tspan></tspan><tspan
+   id="tspan1829" /></tspan><tspan
          sodipodi:role="line"
          x="22.169193"
          y="89.028732"
@@ -387,5 +385,42 @@
          id="tspan1838"><tspan
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#800000"
            id="tspan1840">Needs updates</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4908-4)"
+       d="M 82.311861,21.821753 V 94.606288"
+       id="path4552-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="51.236202"
+       y="37.206581"
+       id="text4956-4"><tspan
+         sodipodi:role="line"
+         x="51.236202"
+         y="37.206581"
+         style="stroke-width:0.26458332"
+         id="tspan4958-4"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#d32f2f;fill-opacity:1;stroke-width:0.26458332"
+   id="tspan6470-8">4.</tspan> Divert traffic</tspan><tspan
+         sodipodi:role="line"
+         x="51.236202"
+         y="41.175331"
+         style="stroke-width:0.26458332"
+         id="tspan915">to backup</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="83.876625"
+       y="41.439919"
+       id="text4948-0"><tspan
+         sodipodi:role="line"
+         x="83.876625"
+         y="41.439919"
+         style="stroke-width:0.26458332"
+         id="tspan4950-7"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#d32f2f;fill-opacity:1;stroke-width:0.26458332"
+   id="tspan6474-8">5.</tspan> Confirm</tspan></text>
   </g>
 </svg>

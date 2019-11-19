@@ -7,8 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ServerMaintenance.abs
-badd +0 ServerMaintenance.st
+badd +1 ServerMaintenance.abs
+badd +1 ServerMaintenance.st
 argglobal
 %argdel
 $argadd ServerMaintenance.abs
@@ -25,8 +25,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 1resize ' . ((&columns * 50 + 52) / 104)
+exe 'vert 2resize ' . ((&columns * 53 + 52) / 104)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -37,11 +37,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 22) / 45)
+let s:l = 35 - ((15 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
+35
 normal! 0
 wincmd w
 argglobal
@@ -55,15 +55,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 17 - ((16 * winheight(0) + 22) / 45)
+let s:l = 22 - ((21 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-17
-normal! 09|
+22
+normal! 03|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 95 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 95 + 95) / 191)
+exe 'vert 1resize ' . ((&columns * 50 + 52) / 104)
+exe 'vert 2resize ' . ((&columns * 53 + 52) / 104)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
